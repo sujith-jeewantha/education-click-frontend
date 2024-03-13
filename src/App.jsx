@@ -1,15 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react'
+import { Routes, store } from './config';
+import { Provider } from 'react-redux';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [loading, setLoading] = useState(true)
+  const preloader = document.getElementById('preloader')
 
+  if (preloader) {
+    setTimeout(() => {
+      preloader.style.display = 'none'
+      setLoading(false)
+    }, 2000);
+  }
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1000)
+  }, [])
   return (
-    <>
-      <h1 className="text-3xl font-bold underline text-center"> Hello World</h1>
-    </>
+    !loading && (
+      <Provider store={store}>
+        <Routes />
+      </Provider>
+    )
   )
 }
 
