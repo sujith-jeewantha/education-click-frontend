@@ -10,49 +10,45 @@ import {
     FaInstagramSquare,
 } from "react-icons/fa";
 import { MdEmail, MdSend } from "react-icons/md";
-import emailjs from "@emailjs/browser";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+// import emailjs from "@emailjs/browser";
+// import Swal from "sweetalert2";
+// import { useNavigate } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { headingAnimation, contactAnimation } from "../../hooks/useAnimation";
 import '../../shared/Shared.css'
 import { BottomLine, ButtonThree } from "../../components/atoms";
 import { Footer, Navbar } from "../../components";
+import axios from 'axios';
 
 const Contact = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const form = useRef();
     const [ref, inView] = useInView({ threshold: 0.3, triggerOnce: true });
     const [viewDiv, setViewDiv] = useState(false);
     const animation = useAnimation();
 
-    const handleSend = (e) => {
-        e.preventDefault();
-        emailjs
-            .sendForm(
-                "service_6xnj05v",
-                "template_exk29f8",
-                form.current,
-                "kLfLk-o6LKj-L9c77"
-            )
-            .then(
-                (result) => {
-                    console.log(result.text);
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: "Your Message has been sent",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                    navigate("/");
-                },
-                (error) => {
-                    console.log(error.text);
-                }
-            );
-        e.target.reset();
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          const response = await axios.post('/api/email/sendEmail', formData);
+          console.log(response.data);
+          // Reset form after successful submission
+          setFormData({name: '', email: '', subject: '', message: '' });
+        } catch (error) {
+          console.error('Error sending email:', error);
+        }
+      };
     
     useEffect(() => {
         if (inView) {
@@ -72,9 +68,9 @@ const Contact = () => {
                         animate={viewDiv && "visible"}
                         variants={headingAnimation}
                     >
-                        <h3 className="text-neutral text-center dark:text-white">Kontak</h3>
+                        <h3 className="text-neutral text-center dark:text-white">Contact</h3>
                         <h1 className="text-4xl font-semibold drop-shadow-md text-center text-accent dark:text-white">
-                            Hubungi <span className="text-primary">Kami</span>
+                            Education <span className="text-primary">Click</span>
                         </h1>
                         <BottomLine />
                     </motion.div>
@@ -86,14 +82,16 @@ const Contact = () => {
                             animate={viewDiv && "visible"}
                             variants={contactAnimation}
                         >
-                            <form ref={form} onSubmit={handleSend}>
+                            <form ref={form} onSubmit={handleSubmit}>
                                 <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-6">
                                     <input
                                         className="input-field"
                                         type="text"
                                         name="name"
                                         id="name"
-                                        placeholder="Nama"
+                                        placeholder="Name"
+                                        value={formData.name}
+                                        onChange={handleChange}
                                         required
                                     />
                                     <input
@@ -102,6 +100,8 @@ const Contact = () => {
                                         name="email"
                                         id="email"
                                         placeholder="Email"
+                                        value={formData.email}
+                                        onChange={handleChange}
                                         required
                                     />
                                 </div>
@@ -110,7 +110,9 @@ const Contact = () => {
                                     type="text"
                                     name="subject"
                                     id="subject"
-                                    placeholder="Subjek"
+                                    placeholder="Subject"
+                                    value={formData.subject}
+                                    onChange={handleChange}
                                     required
                                 />
                                 <textarea
@@ -119,7 +121,9 @@ const Contact = () => {
                                     id="message"
                                     cols="30"
                                     rows="5"
-                                    placeholder="Pesan"
+                                    placeholder="Message"
+                                    value={formData.message}
+                                    onChange={handleChange}
                                     required
                                 ></textarea>
                                 <ButtonThree
@@ -127,7 +131,7 @@ const Contact = () => {
                                     value="Send Message"
                                     className=""
                                 >
-                                    <span>Kirim</span>
+                                    <span>Send Message</span>
                                     <span><MdSend /></span>
                                 </ButtonThree>
                             </form>
@@ -140,7 +144,7 @@ const Contact = () => {
                         >
                             <div className="flex items-center my-6">
                                 <FaUserAlt className="text-2xl mr-8 text-primary duration-300"></FaUserAlt>
-                                <h3 className="font-medium dark:text-white">PT. Humpus Karbometil Selulosa</h3>
+                                <h3 className="font-medium dark:text-white">Mr. Director</h3>
                             </div>
                             <div className="flex items-center my-6">
                                 <FaPhoneAlt className="text-2xl mr-8 text-primary duration-300"></FaPhoneAlt>
@@ -148,13 +152,13 @@ const Contact = () => {
                             </div>
                             <div className="flex items-center my-6">
                                 <MdEmail className="text-3xl mr-8 text-primary duration-300"></MdEmail>
-                                <h3 className="font-medium dark:text-white">info@hks.com</h3>
+                                <h3 className="font-medium dark:text-white">info@educationclick.com</h3>
                             </div>
                             <div className="flex items-center my-6">
                                 <FaLocationArrow className="text-2xl mr-8 text-primary duration-300"></FaLocationArrow>
 
                                 <h3 className="font-medium dark:text-white">
-                                    Karawang, Jawa Barat, Indonesia
+                                    Colombo, Sri Lanka
                                 </h3>
                             </div>
                             <div className="mt-8 flex items-center">

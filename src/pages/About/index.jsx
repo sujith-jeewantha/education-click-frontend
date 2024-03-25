@@ -26,9 +26,9 @@ const About = () => {
                                 transition: { duration: 1, type: "spring" },
                             }}
                         >
-                            <h3 className="text-neutral text-center dark:text-white">Apa itu SiPeKa ?</h3>
+                            <h3 className="text-neutral text-center dark:text-white">About us ?</h3>
                             <h1 className="text-4xl font-semibold drop-shadow-md text-center text-accent dark:text-white">
-                                Tentang <span className="text-primary">Kami</span>
+                                Education <span className="text-primary">Click</span>
                             </h1>
                             <BottomLine />
                         </motion.div>
