@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import bannerImg from '../../../assets/images/bannerImg.png'
 import { ButtonThree } from "../../atoms";
 import '../../../shared/Shared.css'
+import DropdownButton from "../../../pages/Login/Dropdown";
+
 
 const Banner = () => {
+    const options = ['Student', 'Teacher', 'Supervisior'];
     return (
         <div className="pt-14 parent min-h-[100vh] flex flex-col-reverse lg:flex-row items-center justify-between dark:bg-boxdark ">
             <motion.div
@@ -22,11 +25,9 @@ const Banner = () => {
                 </p>
 
                 <div className="grid justify-center sm:flex sm:justify-start translate-y-[-170%] sm:translate-y-[-0%]">
-                    <Link to="/login" className="sm:py-0">
-                        <ButtonThree>
-                            <span>Login</span>
-                        </ButtonThree>
-                    </Link>
+                <DropdownButton options={options} className="primary-button w-full text-white">
+                    <span>Login</span>
+                </DropdownButton>
                 </div>
             </motion.div>
             <motion.div
@@ -38,8 +39,8 @@ const Banner = () => {
                 <div className="order-1  lg:order-3 lg:pt-0 md:pt-0 sm:pt-0">
                     <img
                         src={bannerImg}
-                        title="Banner SiPeKa"
-                        alt="Banner SiPeKa"
+                        title="Banner EducationClick"
+                        alt="Banner EducationClick"
                     />
                 </div>
             </motion.div>

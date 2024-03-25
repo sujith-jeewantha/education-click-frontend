@@ -1,7 +1,7 @@
 import React from 'react';
-import LogoEducationClick from '../../assets/images/logo/logo-education-click.png';
-import LoginImg from '../../assets/images/LoginImg/login.svg';
-import { Footer, LoginInput, Navbar } from '../../components';
+import LogoEducationClick from '../../../assets/images/logo/logo-education-click.png';
+import LoginImg from '../../../assets/images/LoginImg/login.svg';
+import { Footer, LoginInput, Navbar } from '../../../components';
 
 function Login() {
     return (
@@ -18,7 +18,7 @@ function Login() {
                                 title='Logo EducationClick'
                             />
                         </span>
-                        <p className="2xl:px-20 text-black dark:text-white">Sistem Penggajian Karyawan Online
+                        <p className="2xl:px-20 text-black dark:text-white">Student
                             <br /> PT. Humpuss Karbometil Selulosa</p>
                         <img className="mt-15 inline-block" src={LoginImg} alt="Logo" />
                     </div>

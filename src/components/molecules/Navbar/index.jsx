@@ -9,8 +9,9 @@ import { GiCrossMark } from "react-icons/gi";
 import { FaHome } from "react-icons/fa";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
-import LogoSipeka from '../../../assets/images/logo/logo-education-click.png'
+import LogoEducationClick from '../../../assets/images/logo/logo-education-click.png'
 import { ButtonThree, DarkModeSwitcher } from "../../atoms";
+import DropdownButton from "../../../pages/Login/Dropdown";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -19,10 +20,12 @@ export default function Navbar() {
     };
 
     const navLinks = [
-        { title: "Beranda", link: "/", icon: <FaHome /> },
-        { title: "Tentang", link: "/tentang", icon: <RiFolderInfoFill /> },
-        { title: "Kontak", link: "/kontak", icon: <RiContactsBook2Fill /> },
+        { title: "Home", link: "/", icon: <FaHome /> },
+        { title: "About", link: "/about", icon: <RiFolderInfoFill /> },
+        { title: "Contact", link: "/contact", icon: <RiContactsBook2Fill /> },
     ];
+
+    const options = ['Student', 'Teacher', 'Supervisor'];
 
     const activeLink = ({ isActive }) => {
         return {
@@ -59,10 +62,10 @@ export default function Navbar() {
                 <div>
                     <Link to="/">
                         <img
-                            src={LogoSipeka}
-                            alt="Logo SiPeKa"
+                            src={LogoEducationClick}
+                            alt="Logo EducationClick"
                             className="w-40"
-                            title="Logo SiPeKa"
+                            title="Logo EducationClick"
                         />
                     </Link>
                 </div>
@@ -80,14 +83,17 @@ export default function Navbar() {
                             </li>
                         ))}
                         <DarkModeSwitcher />
-                        <Link
+                        {/* <Link
                             className="mx-4"
                             to={'/login'}
-                        >
-                            <ButtonThree>
+                        > */}
+                            {/* <ButtonThree>
                                 <span>Login</span>
-                            </ButtonThree>
-                        </Link>
+                            </ButtonThree> */}
+                            <DropdownButton options={options} className="primary-button w-full text-white">
+                                <span>Login</span>
+                            </DropdownButton>
+                        {/* </Link> */}
                     </ul>
                     <div className="block lg:hidden ">
                         <button onClick={toggleDrawer} className="btn btn-ghost text-black dark:text-white dark:hover:text-primary hover:text-primary ">
@@ -125,7 +131,7 @@ export default function Navbar() {
                                 <div className=' my-4 mr-3 m-4' >
                                     <DarkModeSwitcher />
                                 </div>
-                                <Link
+                                {/* <Link
                                     className="flex items-center my-4 mr-6 m-6"
                                     to={'/login'}
                                 >
@@ -133,11 +139,14 @@ export default function Navbar() {
                                         className="primary-button w-full text-white">
                                         <span>Login</span>
                                     </ButtonThree>
-                                </Link>
+                                </Link> */}
+                                <DropdownButton options={options} className="primary-button w-full text-white">
+                                <span>Login</span>
+                                </DropdownButton>
                             </ul>
                             <div className="text-center dark:bg-boxdark">
                                 <p className="text-accent dark:text-white">
-                                    &copy; Copyright 2023, PT. Humpus Karbometil Selulosa. All Rights Reserved
+                                    &copy; Copyright 2024, Education - Click. All Rights Reserved
                                 </p>
                             </div>
                         </Drawer>

@@ -5,6 +5,13 @@ import Home from '../../pages/Home';
 import About from '../../pages/About';
 import Contact from '../../pages/Contact';
 import Login from '../../pages/Login';
+import Student from '../../pages/Login/Student'
+import Teacher from '../../pages/Login/Teacher'
+import Supervisor from '../../pages/Login/Supervisor'
+import RegisterStudent from '../../pages/Register/RegisterStudent'
+import RegisterTeacher from '../../pages/Register/RegisterTeacher'
+import RegisterSupervisor from '../../pages/Register/RegisterSupervisor'
+
 import Dashboard from '../../pages/Dashboard';
 import {
   FormAddDataJabatan,
@@ -40,9 +47,19 @@ const AppRoutes = () => {
 
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/tentang' element={<About />} />
-      <Route path='/kontak' element={<Contact />} />
-      <Route path='/login' element={<Login />} />
+      <Route path='/about' element={<About />} />
+      <Route path='/contact' element={<Contact />} />
+      {/* Login */}
+      <Route path='/student' element={<Student />} />
+      <Route path='/teacher' element={<Teacher />} />
+      <Route path='/supervisor' element={<Supervisor />} />
+      <Route path='/super-admin' element={<Login />} />
+
+      {/* Register */}
+      <Route path='/register-student' element={<RegisterStudent />} />
+      <Route path='/register-teacher' element={<RegisterTeacher />} />
+      <Route path='/register-supervisor' element={<RegisterSupervisor />} />
+
       <Route path='/dashboard' element={<Dashboard />} />
 
       {/* Route Admin */}

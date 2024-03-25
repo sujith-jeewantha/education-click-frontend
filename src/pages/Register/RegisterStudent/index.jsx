@@ -1,9 +1,9 @@
 import React from 'react';
-import LogoEducationClick from '../../assets/images/logo/logo-education-click.png';
-import LoginImg from '../../assets/images/LoginImg/login.svg';
-import { Footer, LoginInput, Navbar } from '../../components';
+import LogoEducationClick from '../../../assets/images/logo/logo-education-click.png';
+import LoginImg from '../../../assets/images/LoginImg/login.svg';
+import { Footer, LoginInput, Navbar } from '../../../components';
 
-function Login() {
+function RegisterStudent() {
     return (
         <div className="pt-10 min-h-screen rounded-sm border border-stroke shadow-default dark:border-strokedark dark:bg-boxdark">
             <Navbar />
@@ -18,7 +18,7 @@ function Login() {
                                 title='Logo EducationClick'
                             />
                         </span>
-                        <p className="2xl:px-20 text-black dark:text-white">Sistem Penggajian Karyawan Online
+                        <p className="2xl:px-20 text-black dark:text-white">Register Student
                             <br /> PT. Humpuss Karbometil Selulosa</p>
                         <img className="mt-15 inline-block" src={LoginImg} alt="Logo" />
                     </div>
@@ -35,4 +35,4 @@ function Login() {
     );
 };
 
-export default Login;
+export default RegisterStudent;
